@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementFactor;
-    public float rotationFactor;
-    public GameObject ammo;
-
+    [SerializeField] private float movementFactor;
+    [SerializeField] private float rotationFactor;
+    [SerializeField] private GameObject ammo;
+    [SerializeField] private Camera cam;
 
     Rigidbody rb;
 
@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
         pos = Vector3.zero;
         pos.y = transform.position.y;
         onFloor = true;
+
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -51,16 +53,24 @@ public class PlayerMovement : MonoBehaviour
             pos = Vector3.zero;
             transform.position = pos;
             transform.rotation = Quaternion.identity;
+            cam.transform.rotation = Quaternion.identity;
         }
-        float roty = Input.GetAxis("RotationalY") * rotationFactor;
-        transform.RotateAround(transform.position, Vector3.up, roty);
+
+
+
+        //float roty = Input.GetAxis("RotationalY") * rotationFactor;
+        float roty = Input.GetAxis("Mouse X") * rotationFactor;
+        transform.RotateAround(transform.position, transform.up, roty);
+
+        float rotx = Input.GetAxis("Mouse Y") * rotationFactor;
+        cam.transform.RotateAround(transform.position, transform.right, rotx);
 
 
 
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject bullet = Instantiate(ammo, transform.position + transform.forward * .6f, Quaternion.identity);
+            GameObject bullet = Instantiate(ammo, transform.position + cam.transform.forward * .6f, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().velocity = transform.forward * 50;
         }
 

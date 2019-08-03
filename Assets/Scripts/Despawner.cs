@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDamage : MonoBehaviour
+public class Despawner : MonoBehaviour
 {
+    [SerializeField] private float seconds;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(Despawn());
     }
 
     // Update is called once per frame
@@ -16,11 +18,9 @@ public class EnemyDamage : MonoBehaviour
 
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    IEnumerator Despawn()
     {
-        Destroy(other.gameObject);
+        yield return new WaitForSeconds(seconds);
         Destroy(gameObject);
-        Debug.Log("Hit");
     }
 }
