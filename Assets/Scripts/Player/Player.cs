@@ -2,17 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    [SerializeField] private float movementFactor;
-    [SerializeField] private float rotationFactor;
+    [SerializeField] private PlayerCharacter character;
     [SerializeField] private GameObject ammo;
     [SerializeField] private Camera cam;
+
+    public static Player instance;
 
     Rigidbody rb;
 
     Vector3 pos;
     bool onFloor;
+
+    int health;
+    int attackDamage;
+
+    public delegate void UpdatePlayerHealth();
+    public static event UpdatePlayerHealth onHealthChanged;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        health = character.health;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         pos = Vector3.zero;
         pos.y = transform.position.y;
         onFloor = true;
+        attackDamage = character.attackDamage;
 
         Cursor.visible = false;
     }
@@ -31,9 +53,9 @@ public class PlayerMovement : MonoBehaviour
         if (onFloor)
         {
 
-            float hr = Input.GetAxis("Horizontal") * movementFactor;
+            float hr = Input.GetAxis("Horizontal") * character.movementSpeed;
             pos += hr * transform.right;
-            float vr = Input.GetAxis("Vertical") * movementFactor;
+            float vr = Input.GetAxis("Vertical") * character.movementSpeed;
 
             pos += vr * transform.forward;
             pos.y = transform.position.y;
@@ -41,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.velocity = Vector3.up * 5;
+                rb.velocity = Vector3.up * character.jumpFactor;
                 //pos.y = 1.0f;
                 //transform.position = pos;
             }
@@ -59,10 +81,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         //float roty = Input.GetAxis("RotationalY") * rotationFactor;
-        float roty = Input.GetAxis("Mouse X") * rotationFactor;
+        float roty = Input.GetAxis("Mouse X") * character.rotationSpeed;
         transform.RotateAround(transform.position, transform.up, roty);
 
-        float rotx = Input.GetAxis("Mouse Y") * rotationFactor;
+        float rotx = Input.GetAxis("Mouse Y") * character.rotationSpeed;
         cam.transform.RotateAround(transform.position, transform.right, rotx);
 
 
@@ -98,5 +120,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void AddHealth(int healthToAdd)
+    {
+        health += healthToAdd;
+        onHealthChanged();
+    }
+
+    public string GetCharacter()
+    {
+        return character.characterName;
     }
 }

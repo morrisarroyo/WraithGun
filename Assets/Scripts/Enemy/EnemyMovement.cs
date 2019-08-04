@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currentWaypoint].position);
 
-            Debug.Log("EnemyMovement-Update-Stopped");
+            //Debug.Log("EnemyMovement-Update-Stopped");
         }
     }
 }
