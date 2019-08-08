@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 469585219
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bb35374cedff8359cfcdeb80bfe39d6f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 72fe04f62eb052f305a2082b9f78bd5d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d67f0735b0fa9d43b1ce98a3d982d79, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Ammo.prefab
+- Assets/Material/PaintBall.mat
+Dependencies: []
