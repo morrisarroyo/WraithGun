@@ -23,6 +23,12 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        //LoadAssetFromAssetBundlePractice();
+    }
+
+    //practice loading from asset bundle
+    private static void LoadAssetFromAssetBundlePractice()
+    {
         Debug.Log(Path.Combine(Application.dataPath + "/AssetBundles", "paintball"));
         var myLoadedAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Application.dataPath + "/AssetBundles", "paintball"));
         //var myLoadedAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "paintball"));
