@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject bullet = Instantiate(ammo, transform.position + cam.transform.forward * .6f, Quaternion.identity);
-            bullet.GetComponent<Rigidbody>().velocity = transform.forward * 50;
+            bullet.GetComponent<Rigidbody>().velocity = cam.transform.forward * 50;
         }
 
 

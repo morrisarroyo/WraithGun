@@ -15,6 +15,6 @@ MonoBehaviour:
   characterName: Sniper Wraith
   health: 200
   attackDamage: 100
-  movementSpeed: 0.75
+  movementSpeed: 0.1
   jumpFactor: 7
   rotationSpeed: 3
