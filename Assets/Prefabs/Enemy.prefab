@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3329451303012601419}
   - component: {fileID: -2053789590702113181}
   - component: {fileID: 39261050567133486}
+  - component: {fileID: -3425508984033164579}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fdf619e3b860b4d98228dcee70610e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DarkenValue: 0
 --- !u!195 &-2053789590702113181
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -141,3 +143,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4be78b6ca665ff499725189cecb19d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints: []
+--- !u!136 &-3425508984033164579
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978537536721466835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

@@ -42,10 +42,13 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-        onEnemyKilled();
-        Destroy(gameObject);
-        Debug.Log("Hit");
+        if (other.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            onEnemyKilled();
+            Destroy(gameObject);
+            Debug.Log("Hit");
+        }
     }
 
     private void OnDisable()
