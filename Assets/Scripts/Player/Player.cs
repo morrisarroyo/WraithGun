@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     Rigidbody rb;
 
+    Vector3 startingPos;
     Vector3 pos;
     bool onFloor;
 
@@ -40,12 +41,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        pos = Vector3.zero;
+        startingPos = transform.position;
+        pos = startingPos;
         pos.y = transform.position.y;
         onFloor = true;
         attackDamage = character.attackDamage;
 
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("Reset");
-            pos = Vector3.zero;
+            pos = startingPos;
             transform.position = pos;
             transform.rotation = Quaternion.identity;
             cam.transform.rotation = Quaternion.identity;

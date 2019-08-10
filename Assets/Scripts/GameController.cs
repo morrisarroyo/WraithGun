@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //LoadAssetFromAssetBundlePractice();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     //practice loading from asset bundle
