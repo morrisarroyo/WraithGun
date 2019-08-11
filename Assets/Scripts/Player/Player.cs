@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         startingPos = transform.position;
         pos = startingPos;
-        pos.y = transform.position.y;
         onFloor = true;
         attackDamage = character.attackDamage;
 
@@ -52,20 +51,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        float hr = Input.GetAxis("Horizontal");
+        float vr = Input.GetAxis("Vertical");
+        Vector3 movement = hr * transform.right + vr * transform.forward;
+        float vely = rb.velocity.y;
+        //rb.AddForce(movement * character.movementSpeed , ForceMode.VelocityChange);
+        //rb.velocity = rb.velocity.normalized * character.movementSpeed * 100;
+        //rb.AddForce(hr * transform.right)
+        //pos.y = transform.position.y;
+        //pos += (hr * transform.right + vr * transform.forward) * character.movementSpeed * Time.deltaTime;
+        rb.velocity = (hr * transform.right + vr * transform.forward).normalized * character.movementSpeed ;
+        rb.velocity += vely * Vector3.up;
+        //transform.position = pos;
+
         if (onFloor)
         {
 
-            float hr = Input.GetAxis("Horizontal") * character.movementSpeed;
-            pos += hr * transform.right;
-            float vr = Input.GetAxis("Vertical") * character.movementSpeed;
-
-            pos += vr * transform.forward;
-            pos.y = transform.position.y;
-            transform.position = pos;
-
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.velocity = Vector3.up * character.jumpFactor;
+                rb.AddForce( Vector3.up * character.jumpFactor, ForceMode.Impulse);
                 //pos.y = 1.0f;
                 //transform.position = pos;
             }
