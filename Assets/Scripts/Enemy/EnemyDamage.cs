@@ -28,7 +28,7 @@ public class EnemyDamage : MonoBehaviour
 
     void DarkenColor()
     {
-        Debug.Log("Enemy DarkenColor");
+        //Debug.Log("Enemy DarkenColor");
         if (onEnemyKilled != null)
         {
             Material mat = GetComponent<Renderer>().material;
@@ -45,7 +45,10 @@ public class EnemyDamage : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
-            onEnemyKilled();
+            if (onEnemyKilled != null) // Gets rid of Null Exception when no one is subscribed
+            {
+                onEnemyKilled();
+            }
             Destroy(gameObject);
             Debug.Log("Hit");
         }

@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         float hr = Input.GetAxis("Horizontal");
         float vr = Input.GetAxis("Vertical");
         Vector3 movement = hr * transform.right + vr * transform.forward;
@@ -67,8 +66,6 @@ public class Player : MonoBehaviour
 
         if (onFloor)
         {
-
-            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce( Vector3.up * character.jumpFactor, ForceMode.Impulse);
