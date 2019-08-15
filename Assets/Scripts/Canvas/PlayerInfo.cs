@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
+    [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private TextMeshProUGUI characterText;
     [SerializeField] private TextMeshProUGUI healthText;
 
@@ -13,9 +14,9 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterText.text = Player.instance.GetCharacter();
-        Debug.Log(Player.instance.GetHealth());
-        healthText.text = "Health: " + Player.instance.GetHealth();
+        characterText.text = playerCharacter.characterName;
+        Debug.Log(playerCharacter.health);
+        healthText.text = "Health: " + playerCharacter.health;
         Player.onHealthChanged += UpdatePlayerHealth;
     }
 
@@ -28,6 +29,6 @@ public class PlayerInfo : MonoBehaviour
     void UpdatePlayerHealth()
     {
         Debug.Log("Canvas-PlayerInfo-UpdatePlayerHealth");
-        healthText.text = "Health: " + Player.instance.GetHealth();
+        healthText.text = "Health: " + playerCharacter.health;
     }
 }

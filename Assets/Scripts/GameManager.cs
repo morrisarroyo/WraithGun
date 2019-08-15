@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static GameController instance;
+    public static GameManager instance;
 
     void Awake()
     {
@@ -19,11 +19,11 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        //LoadAssetFromAssetBundlePractice();
     }
 
     void Start()
     {
-        //LoadAssetFromAssetBundlePractice();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

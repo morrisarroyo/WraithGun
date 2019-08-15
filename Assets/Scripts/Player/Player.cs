@@ -7,9 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerCharacter character;
     [SerializeField] private GameObject ammo;
     [SerializeField] private Camera cam;
-
-    public static Player instance;
-
     Rigidbody rb;
 
     Vector3 startingPos;
@@ -24,16 +21,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
         health = character.health;
     }
 
@@ -55,11 +42,6 @@ public class Player : MonoBehaviour
         float vr = Input.GetAxis("Vertical");
         Vector3 movement = hr * transform.right + vr * transform.forward;
         float vely = rb.velocity.y;
-        //rb.AddForce(movement * character.movementSpeed , ForceMode.VelocityChange);
-        //rb.velocity = rb.velocity.normalized * character.movementSpeed * 100;
-        //rb.AddForce(hr * transform.right)
-        //pos.y = transform.position.y;
-        //pos += (hr * transform.right + vr * transform.forward) * character.movementSpeed * Time.deltaTime;
         rb.velocity = (hr * transform.right + vr * transform.forward).normalized * character.movementSpeed ;
         rb.velocity += vely * Vector3.up;
         //transform.position = pos;
@@ -99,6 +81,8 @@ public class Player : MonoBehaviour
         {
             GameObject bullet = Instantiate(ammo, transform.position + cam.transform.forward * .6f, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().velocity = cam.transform.forward * 50;
+            Debug.Log(character.sounds.attack);
+            AudioManager.instance.Play(character.sounds.attack.name);
         }
 
 
@@ -109,7 +93,7 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Floor"))
         {
-            Debug.Log("On Floor");
+            //Debug.Log("On Floor");
             onFloor = true;
         }
 
@@ -135,7 +119,8 @@ public class Player : MonoBehaviour
     public void AddHealth(int healthToAdd)
     {
         health += healthToAdd;
-        onHealthChanged();
+        if (onHealthChanged != null)
+             onHealthChanged();
     }
 
     public string GetCharacter()

@@ -16,7 +16,7 @@ public class Minimap : MonoBehaviour
         PlayerRadarScript.OnExitRadar += RemoveObjectToRender;
         objectsToRender = new List<Transform>();
         icons = new List<GameObject>();
-        playerTransform = Player.instance.transform;
+        playerTransform = GameObject.FindWithTag("Player").transform;
         for (int i = 0; i < 10; ++i)
         {
             icons.Add(Instantiate(enemyIcon, transform));

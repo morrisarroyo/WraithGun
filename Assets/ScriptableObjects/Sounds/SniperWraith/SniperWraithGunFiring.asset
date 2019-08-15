@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7270228be41252d4286fcd7dd60a8c91, type: 3}
-  m_Name: SniperWraith
+  m_Script: {fileID: 11500000, guid: ef90fe75dbd84cf09512c2ebf8ee346a, type: 3}
+  m_Name: SniperWraithGunFiring
   m_EditorClassIdentifier: 
-  characterName: Sniper Wraith
-  health: 200
-  attackDamage: 100
-  movementSpeed: 2
-  jumpFactor: 7
-  rotationSpeed: 3
+  soundName: GunFiring
+  soundClip: {fileID: 8300000, guid: c0bbc6125ab49a24293335c4616a2fbe, type: 3}
+  volume: 1
+  pitch: 1
+  loop: 0

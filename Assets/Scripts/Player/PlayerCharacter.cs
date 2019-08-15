@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerCharacter : ScriptableObject
 {
     public string characterName;
+    public CharacterSounds sounds;
     public int health;
     public int attackDamage;
     public float movementSpeed;
