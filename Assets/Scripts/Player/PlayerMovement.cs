@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerCharacter character;
     [SerializeField] private GameObject ammo;
     [SerializeField] private Camera cam;
+    
+    PlayerCharacter character;
     Rigidbody rb;
 
     Vector3 startingPos;
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        health = character.health;
+        
     }
 
     // Start is called before the first frame update
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
         startingPos = transform.position;
         pos = startingPos;
         onFloor = true;
+        character = GameManager.instance.GetPlayerCharacter();
+        health = character.health;
         attackDamage = character.attackDamage;
 
     }
@@ -40,10 +43,12 @@ public class Player : MonoBehaviour
     {
         float hr = Input.GetAxis("Horizontal");
         float vr = Input.GetAxis("Vertical");
-        Vector3 movement = hr * transform.right + vr * transform.forward;
+        Transform tr = transform;
+        Vector3 relativeRight = tr.right;
+        Vector3 relativeForward = tr.forward;
+        Vector3 movement = hr * relativeRight+ vr * relativeForward;
         float vely = rb.velocity.y;
-        rb.velocity = (hr * transform.right + vr * transform.forward).normalized * character.movementSpeed ;
-        rb.velocity += vely * Vector3.up;
+        rb.velocity = (hr * relativeRight + vr * relativeForward).normalized * character.movementSpeed + vely * Vector3.up;
         //transform.position = pos;
 
         if (onFloor)

@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    
+    [SerializeField]
+    private PlayerCharacter playerCharacter;
 
     void Awake()
     {
@@ -52,4 +56,10 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    public PlayerCharacter GetPlayerCharacter()
+    {
+        return playerCharacter;
+    }
+
 }

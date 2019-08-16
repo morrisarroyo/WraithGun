@@ -105,18 +105,18 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.375
     agentHeight: 1
     agentSlope: 25
-    agentClimb: 0.3
-    ledgeDropHeight: 0.2
-    maxJumpAcrossDistance: 1
-    minRegionArea: 0.75
+    agentClimb: 1
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 0.1
     manualCellSize: 1
-    cellSize: 0.2
+    cellSize: 0.05
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    accuratePlacement: 1
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 013cad469a6ca0a4bb95d1b9ae37bf1f, type: 2}
@@ -3586,7 +3586,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14710
+  m_Name: pb_Mesh40076
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3749,7 +3749,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14628
+  m_Name: pb_Mesh39994
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4159,6 +4159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ec69d48afe06845b861b9569aad882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 11400000, guid: c0cc7be3d1c9d2e469a15bccb6735550, type: 2}
 --- !u!4 &516334308
 Transform:
   m_ObjectHideFlags: 0
@@ -4185,14 +4186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a217730582424fb59e527ea2615c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: c0cc7be3d1c9d2e469a15bccb6735550, type: 2}
 --- !u!43 &519137944
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14588
+  m_Name: pb_Mesh39954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4890,7 +4890,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14550
+  m_Name: pb_Mesh39908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7086,6 +7086,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1399943671}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 1169753632}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[6]
+      value: 
+      objectReference: {fileID: 715496179}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1399943671}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1169753632}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 715496179}
     - target: {fileID: 2978537536721466839, guid: e48374a8d7d73bf41ba6fcdb262d125b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7146,41 +7181,6 @@ PrefabInstance:
       propertyPath: DarkenValue
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1399943671}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 1169753632}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[6]
-      value: 
-      objectReference: {fileID: 715496179}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1399943671}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1169753632}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 715496179}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48374a8d7d73bf41ba6fcdb262d125b, type: 3}
 --- !u!1 &1313317009
@@ -13218,7 +13218,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14642
+  m_Name: pb_Mesh40008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13381,7 +13381,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14668
+  m_Name: pb_Mesh40034
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13550,6 +13550,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1870205228}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1166450203}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 905712433}
     - target: {fileID: 2978537536721466839, guid: e48374a8d7d73bf41ba6fcdb262d125b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13605,26 +13625,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1870205228}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1166450203}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 905712433}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48374a8d7d73bf41ba6fcdb262d125b, type: 3}
 --- !u!1001 &1715743186
@@ -13639,6 +13639,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 789158564}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 744319292}
     - target: {fileID: 2978537536721466839, guid: e48374a8d7d73bf41ba6fcdb262d125b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13699,21 +13714,6 @@ PrefabInstance:
       propertyPath: DarkenValue
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 789158564}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 744319292}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48374a8d7d73bf41ba6fcdb262d125b, type: 3}
 --- !u!1 &1816707378
@@ -13862,6 +13862,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1983261085}
+    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1313317010}
     - target: {fileID: 2978537536721466839, guid: e48374a8d7d73bf41ba6fcdb262d125b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13917,21 +13932,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1983261085}
-    - target: {fileID: 39261050567133486, guid: e48374a8d7d73bf41ba6fcdb262d125b,
-        type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1313317010}
     - target: {fileID: 6160704767181702545, guid: e48374a8d7d73bf41ba6fcdb262d125b,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13977,7 +13977,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14760
+  m_Name: pb_Mesh40126
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14498,7 +14498,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14696
+  m_Name: pb_Mesh40062
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

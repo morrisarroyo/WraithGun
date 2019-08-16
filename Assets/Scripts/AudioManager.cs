@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public Dictionary<string, AudioSource> sounds;
-    [SerializeField] private PlayerCharacter character;
+    
+    PlayerCharacter character;
     void Awake()
     {
         if (instance == null)
@@ -23,13 +24,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
         sounds = new Dictionary<string, AudioSource>();
-        LoadPlayerCharacterSounds();
         
     }
     
     // Start is called before the first frame update
     void Start()
     {
+        character = GameManager.instance.GetPlayerCharacter();
+        LoadPlayerCharacterSounds();
         
     }
 

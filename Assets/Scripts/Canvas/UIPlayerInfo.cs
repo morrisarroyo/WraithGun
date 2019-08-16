@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CanvasController : MonoBehaviour
+public class UIPlayerInfo : MonoBehaviour
 {
     [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private TextMeshProUGUI characterText;
@@ -17,7 +17,7 @@ public class CanvasController : MonoBehaviour
         characterText.text = playerCharacter.characterName;
         Debug.Log(playerCharacter.health);
         healthText.text = "Health: " + playerCharacter.health;
-        Player.onHealthChanged += UpdatePlayerHealth;
+        PlayerMovement.onHealthChanged += UpdatePlayerHealth;
     }
 
     // Update is called once per frame
