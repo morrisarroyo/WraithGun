@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.CompareTag("Floor"))
         {
-            Debug.Log("Off Floor");
+            //Debug.Log("Off Floor");
             _onFloor = false;
         }
     }

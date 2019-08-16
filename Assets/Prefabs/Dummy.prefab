@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -8817276810954825786}
   - component: {fileID: 1401933076191664255}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Dummy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fdf619e3b860b4d98228dcee70610e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DarkenValue: 15
+  enemyCharacter: {fileID: 11400000, guid: 2d18b7259e83f0e428e39f40397e0a34, type: 2}
+  darkenValue: 0.15
 --- !u!114 &39261050567133486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0.5
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &6160704767181702545

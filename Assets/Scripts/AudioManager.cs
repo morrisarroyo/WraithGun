@@ -79,7 +79,7 @@ public class AudioManager : MonoBehaviour
     public void Play(string soundName)
     {
         bool success = sounds.TryGetValue(soundName, out AudioSource sound);
-        Debug.Log(sounds.Keys.First());
+        //Debug.Log(sounds.Keys.First());
         if (!success)
             return;
         sound.Play();

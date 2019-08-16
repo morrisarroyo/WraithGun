@@ -18,6 +18,7 @@ MonoBehaviour:
     idle: {fileID: 0}
     walk: {fileID: 0}
     attack: {fileID: 11400000, guid: 920ed07bb7ae24d45bd745aefe58004f, type: 2}
+  maxHealth: 200
   health: 200
   attackDamage: 100
   movementSpeed: 2

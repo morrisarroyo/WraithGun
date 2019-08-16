@@ -8,16 +8,16 @@ public class UIPlayerInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterText;
     [SerializeField] private TextMeshProUGUI healthText;
 
-    PlayerCharacter playerCharacter;
+    PlayerCharacter _playerCharacter;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCharacter = GameManager.instance.GetPlayerCharacter();
-        characterText.text = playerCharacter.characterName;
+        _playerCharacter = GameManager.instance.GetPlayerCharacter();
+        characterText.text = _playerCharacter.characterName;
         //Debug.Log(playerCharacter.health);
-        healthText.text = "Health: " + playerCharacter.health;
+        healthText.text = "Health: " + _playerCharacter.health;
         PlayerHealth.OnHealthChanged += UpdatePlayerHealth;
     }
 
@@ -29,7 +29,7 @@ public class UIPlayerInfo : MonoBehaviour
 
     void UpdatePlayerHealth()
     {
-        Debug.Log("Canvas-PlayerInfo-UpdatePlayerHealth");
-        healthText.text = "Health: " + playerCharacter.health;
+        Debug.Log("UIPlayerInfo.UpdatePlayerHealth");
+        healthText.text = "Health: " + _playerCharacter.health;
     }
 }

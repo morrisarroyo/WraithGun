@@ -12,7 +12,6 @@ public class PlayerHealth
     public static void AddHealth(int healthToAdd)
     {
         GameManager.instance.GetPlayerCharacter().health += healthToAdd;
-        if (OnHealthChanged != null)
-            OnHealthChanged();
+        OnHealthChanged?.Invoke();
     }
 }

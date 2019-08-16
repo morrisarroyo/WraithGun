@@ -27,9 +27,9 @@ public class DartSniperGun : MonoBehaviour
 
     void Fire()
     {
-        Debug.Log("DartSniperGun.Fire");
+        //Debug.Log("DartSniperGun.Fire");
         Transform tr = transform;
-        GameObject bullet = Instantiate(ammo, tr.position + (tr.localScale.z * 2 * tr.forward), Quaternion.identity);
+        GameObject bullet = Instantiate(ammo, tr.position + (tr.localScale.z * tr.forward), Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * 50;
         Debug.Log(_gunFireSoundName);
         AudioManager.instance.Play(_gunFireSoundName);

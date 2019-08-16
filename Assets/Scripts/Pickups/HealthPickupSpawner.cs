@@ -5,8 +5,7 @@ using UnityEngine;
 public class HealthPickupSpawner : MonoBehaviour
 {
     [SerializeField] private HealthPickups healthPickup;
-    [SerializeField] private PlayerCharacter playerCharacter;
-
+    
     int healthToAdd;
     float respawnTime;
     Vector3 spawnPosition;
@@ -29,7 +28,7 @@ public class HealthPickupSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerCharacter.health += healthToAdd;
+            PlayerHealth.AddHealth(healthToAdd);
             StartCoroutine(Respawn());
             gameObject.transform.position = Vector3.up * 1000;
         }

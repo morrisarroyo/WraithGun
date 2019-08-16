@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        playerCharacter = PlayerCharacter.Clone(playerCharacter);
         //LoadAssetFromAssetBundlePractice();
     }
 

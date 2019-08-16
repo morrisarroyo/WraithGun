@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: BlinkWraith
   m_EditorClassIdentifier: 
   characterName: Blink Wraith
+  sounds:
+    death: {fileID: 0}
+    idle: {fileID: 0}
+    walk: {fileID: 0}
+    attack: {fileID: 0}
+  maxHealth: 150
   health: 150
   attackDamage: 15
   movementSpeed: 2.5

@@ -7,17 +7,18 @@ public class EnemyDamage : MonoBehaviour
 {
     //[SerializeField] private int health;
 
+    [SerializeField] private EnemyCharacter enemyCharacter;
     // Number to minus material's color red value by
-    [SerializeField] private float DarkenValue;
-
+    [Range(0f,1f)]
+    [SerializeField] private float darkenValue;
     public delegate void DarkenEnemyColor();
-    public static event DarkenEnemyColor onEnemyKilled;
+    public static event DarkenEnemyColor OnEnemyKilled;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        EnemyDamage.onEnemyKilled += DarkenColor;
+        EnemyDamage.OnEnemyKilled += DarkenColor;
     }
 
     // Update is called once per frame
@@ -29,13 +30,12 @@ public class EnemyDamage : MonoBehaviour
     void DarkenColor()
     {
         //Debug.Log("Enemy DarkenColor");
-        if (onEnemyKilled != null)
+        if (OnEnemyKilled != null)
         {
             Material mat = GetComponent<Renderer>().material;
             Color color = mat.color;
-            color.r -= .20f;
+            color.r -= darkenValue;
             mat.color = color;
-
         }
     }
 
@@ -45,17 +45,20 @@ public class EnemyDamage : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
-            if (onEnemyKilled != null) // Gets rid of Null Exception when no one is subscribed
-            {
-                onEnemyKilled();
-            }
-            Destroy(gameObject);
+            Die();
             Debug.Log("Hit");
         }
     }
 
+    private void Die()
+    {
+        OnEnemyKilled?.Invoke();
+        StatsManager.instance.AddKills(1);
+        StatsManager.instance.AddScore(enemyCharacter.KillScore);
+        Destroy(gameObject);
+    }
     private void OnDisable()
     {
-        onEnemyKilled -= DarkenColor;
+        OnEnemyKilled -= DarkenColor;
     }
 }
