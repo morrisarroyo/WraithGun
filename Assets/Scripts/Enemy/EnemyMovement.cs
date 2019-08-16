@@ -14,7 +14,6 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         currentWaypoint = 1;
-        agent.autoRepath = true;
         agent.SetDestination(waypoints[currentWaypoint % waypoints.Length].position);
     }
 

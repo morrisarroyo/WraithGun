@@ -7,17 +7,20 @@ public class FollowPlayerOrtho : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
 
-    Vector3 cameraPosition;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        cameraPosition = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
+        Transform tr = transform;
+        Vector3 playerPosition = playerTransform.position;
+        tr.position = new Vector3(playerPosition.x, tr.position.y, playerPosition.z);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        transform.position = cameraPosition;
+    {       
+        Transform tr = transform;
+        Vector3 playerPosition = playerTransform.position;
+        tr.position = new Vector3(playerPosition.x, tr.position.y, playerPosition.z);
     }
 }

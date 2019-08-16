@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2366513882605920947}
   - component: {fileID: 2366513882605920946}
   - component: {fileID: 2366513882605920949}
+  - component: {fileID: 3565648634932026584}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -92,6 +93,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3565648634932026584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366513882605920951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e959fdbf154ba45a10c472540eff18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammo: {fileID: 7316879834444958221, guid: db602391620605244bbecd4d41591a80, type: 3}
 --- !u!1 &2366513883296532455
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +205,7 @@ GameObject:
   - component: {fileID: 2366513884327073781}
   - component: {fileID: 2366513884327073778}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SniperWraith
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f8ccdddf81a5e4c890e5733187323f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: ad12ee07b3465154697374c476583d93, type: 2}
   ammo: {fileID: 7316879834444958221, guid: db602391620605244bbecd4d41591a80, type: 3}
   cam: {fileID: 2366513883296532453}
 --- !u!54 &2366513884327073778

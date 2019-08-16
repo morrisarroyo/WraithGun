@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class UIPlayerInfo : MonoBehaviour
 {
-    [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private TextMeshProUGUI characterText;
     [SerializeField] private TextMeshProUGUI healthText;
 
+    PlayerCharacter playerCharacter;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerCharacter = GameManager.instance.GetPlayerCharacter();
         characterText.text = playerCharacter.characterName;
-        Debug.Log(playerCharacter.health);
+        //Debug.Log(playerCharacter.health);
         healthText.text = "Health: " + playerCharacter.health;
-        PlayerMovement.onHealthChanged += UpdatePlayerHealth;
+        PlayerHealth.OnHealthChanged += UpdatePlayerHealth;
     }
 
     // Update is called once per frame

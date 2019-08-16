@@ -1,105 +1,93 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject ammo;
     [SerializeField] private Camera cam;
     
-    PlayerCharacter character;
-    Rigidbody rb;
+    PlayerCharacter _character;
+    Rigidbody rigidbody;
 
-    Vector3 startingPos;
-    Vector3 pos;
-    bool onFloor;
-
-    int health;
-    int attackDamage;
-
-    public delegate void UpdatePlayerHealth();
-    public static event UpdatePlayerHealth onHealthChanged;
-
-    private void Awake()
-    {
-        
-    }
-
+    Vector3 _startingPosition;
+    Vector3 _forwardMovement;
+    Vector3 _horizontalMovement;
+    bool _onFloor;
+    
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        startingPos = transform.position;
-        pos = startingPos;
-        onFloor = true;
-        character = GameManager.instance.GetPlayerCharacter();
-        health = character.health;
-        attackDamage = character.attackDamage;
+        rigidbody = GetComponent<Rigidbody>();
+        _startingPosition = transform.position;
+        _onFloor = true;
+        _character = GameManager.instance.GetPlayerCharacter();
+        _forwardMovement = _horizontalMovement = Vector3.zero;
+        InputManager.OnInputHorizontal += SetHorizontalMovement;
+        InputManager.OnInputVertical += SetForwardMovement;
+        InputManager.OnInputSpace += Jump;
+        InputManager.OnInputF += Respawn;
+        InputManager.OnInputMouseXAxis += RotateCharacterHorizontally;
+        InputManager.OnInputMouseYAxis += RotateCameraVertically;
+    }
 
+    private void OnDisable()
+    {
+        InputManager.OnInputHorizontal -= SetHorizontalMovement;
+        InputManager.OnInputVertical -= SetForwardMovement;
+        InputManager.OnInputSpace -= Jump;
+        InputManager.OnInputF -= Respawn;
+        InputManager.OnInputMouseXAxis -= RotateCharacterHorizontally;
+        InputManager.OnInputMouseYAxis -= RotateCameraVertically;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float hr = Input.GetAxis("Horizontal");
-        float vr = Input.GetAxis("Vertical");
-        Transform tr = transform;
-        Vector3 relativeRight = tr.right;
-        Vector3 relativeForward = tr.forward;
-        Vector3 movement = hr * relativeRight+ vr * relativeForward;
-        float vely = rb.velocity.y;
-        rb.velocity = (hr * relativeRight + vr * relativeForward).normalized * character.movementSpeed + vely * Vector3.up;
-        //transform.position = pos;
-
-        if (onFloor)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.AddForce( Vector3.up * character.jumpFactor, ForceMode.Impulse);
-                //pos.y = 1.0f;
-                //transform.position = pos;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.Log("Reset");
-            pos = startingPos;
-            transform.position = pos;
-            transform.rotation = Quaternion.identity;
-            cam.transform.rotation = Quaternion.identity;
-        }
-
-
-
-        //float roty = Input.GetAxis("RotationalY") * rotationFactor;
-        float roty = Input.GetAxis("Mouse X") * character.rotationSpeed;
-        transform.RotateAround(transform.position, transform.up, roty);
-
-        float rotx = Input.GetAxis("Mouse Y") * character.rotationSpeed;
-        cam.transform.RotateAround(transform.position, transform.right, rotx);
-
-
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject bullet = Instantiate(ammo, transform.position + cam.transform.forward * .6f, Quaternion.identity);
-            bullet.GetComponent<Rigidbody>().velocity = cam.transform.forward * 50;
-            Debug.Log(character.sounds.attack);
-            AudioManager.instance.Play(character.sounds.attack.name);
-        }
-
-
-
+        Vector3 verticalVelocity = rigidbody.velocity.y * Vector3.up;
+        rigidbody.velocity = (_horizontalMovement + _forwardMovement).normalized * _character.movementSpeed
+                             + verticalVelocity;
     }
+    
+    void SetHorizontalMovement(float horizontal) {
+        _horizontalMovement = horizontal * transform.right;
+    }
+    
+    void SetForwardMovement(float forward) {
+        _forwardMovement = forward * transform.forward;
+    }
+
+    void Jump()
+    {
+        if (_onFloor)
+            rigidbody.AddForce( Vector3.up * _character.jumpFactor, ForceMode.Impulse);
+    }
+
+    void Respawn()
+    {
+        //Debug.Log("Respawn");
+        Transform tr = transform;
+        tr.position = _startingPosition;
+        tr.rotation = Quaternion.identity;
+        cam.transform.rotation = Quaternion.identity;
+    }
+
+    void RotateCharacterHorizontally(float rotation)
+    {
+        Transform tr = transform;
+        tr.RotateAround(tr.position, tr.up, rotation * _character.rotationSpeed);
+    }
+    
+    void RotateCameraVertically(float rotation)
+    {
+        Transform tr = transform;
+        cam.transform.RotateAround(tr.position, tr.right, rotation * _character.rotationSpeed);
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Floor"))
         {
             //Debug.Log("On Floor");
-            onFloor = true;
+            _onFloor = true;
         }
 
 
@@ -110,26 +98,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.CompareTag("Floor"))
         {
             Debug.Log("Off Floor");
-            onFloor = false;
+            _onFloor = false;
         }
-
-
-    }
-
-    public int GetHealth()
-    {
-        return health;
-    }
-
-    public void AddHealth(int healthToAdd)
-    {
-        health += healthToAdd;
-        if (onHealthChanged != null)
-             onHealthChanged();
-    }
-
-    public string GetCharacter()
-    {
-        return character.characterName;
     }
 }
