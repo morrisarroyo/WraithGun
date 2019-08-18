@@ -17,22 +17,7 @@ namespace Enemy.Dummy
         void Start()
         {
             _path = path.GetPathLinkedList();
-            /*
-            Transform[] childTransforms = GetComponentsInChildren<Transform>();
-            
-            
-            foreach (Transform childTransform in childTransforms.Skip(1).ToArray())
-            {
-                _path.Add(childTransform);
-            }
-            */
             SpawnDummy();
-            /*
-            foreach (var tr in _path)
-            {
-                Debug.Log(gameObject.name + " " + tr.position.ToString());
-            }
-            */
         }
 
         // Update is called once per frame
@@ -43,22 +28,20 @@ namespace Enemy.Dummy
                 _spawnTimer += Time.deltaTime;
                 if (_spawnTimer >= spawnTime)
                 {
-                    SpawnDummy();
                     _spawnTimer = 0;
+                    SpawnDummy();
                 }
             }
         }
 
         private void SpawnDummy()
         {
+            ++_dummyCount;
             DummyEnemyMovement dummy = DummyEnemyPool.Instance.GetFromPool();
             dummy.gameObject.SetActive(true);
             dummy.Path = _path;
-            //Debug.Log(dummy.Waypoints.Count);
             dummy.gameObject.GetComponent<DummyEnemyDamage>().OnDummyKilled += DecrementDummyCountOnDeath;
-            dummy.Reset();
-            ++_dummyCount;
-
+            dummy.ReuseEnemy(_path);
         }
 
         private void DecrementDummyCountOnDeath()

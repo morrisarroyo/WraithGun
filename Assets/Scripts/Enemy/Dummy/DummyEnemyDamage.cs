@@ -12,12 +12,11 @@ namespace Enemy.Dummy
         
         protected override void Die()
         {
+            base.Die();
             if (DummyEnemyPool.Instance != null)
                 DummyEnemyPool.Instance.ReturnToPool(gameObject.GetComponent<DummyEnemyMovement>());
             OnDummyKilled?.Invoke();
-            base.Die();
-            
-
+            gameObject.SetActive(false);
         }
     }
 }

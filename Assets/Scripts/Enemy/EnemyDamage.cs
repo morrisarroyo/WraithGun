@@ -30,7 +30,6 @@ public abstract class EnemyDamage : MonoBehaviour
 
     void DarkenColor()
     {
-        //Debug.Log("Enemy DarkenColor");
         if (OnEnemyKilled != null)
         {
             Material mat = GetComponent<Renderer>().material;
@@ -56,7 +55,7 @@ public abstract class EnemyDamage : MonoBehaviour
         OnEnemyKilled?.Invoke();
         StatsManager.instance.AddKills(1);
         StatsManager.instance.AddScore(enemyCharacter.KillScore);
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     
     private void OnDisable()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,26 +20,24 @@ public abstract class EnemyNavMeshWaypointMovement : MonoBehaviour
 
    
     NavMeshAgent _agent;
-    
+
+    private void Awake()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
         _agent.SetDestination((path.First.Next ?? path.First).Value);
     }
-
-    private void OnEnable()
-    {
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
-
         if (HasArrivedAtWaypoint())
         {
             ChangeDestinationToNextWaypoint();
-            //Debug.Log("EnemyMovement-Update-Stopped");
         }
     }
 
@@ -51,19 +48,19 @@ public abstract class EnemyNavMeshWaypointMovement : MonoBehaviour
 
     private void ChangeDestinationToNextWaypoint()
     {
-        Debug.Log(gameObject.name + path.Count);
-        _currentNode = _currentNode.Next ?? path.First;
-        if (!HasArrivedAtWaypoint())
-            _agent.SetDestination(_currentNode.Value);
+        _currentNode = _currentNode.Next ?? path.First; 
+        _agent.SetDestination(_currentNode.Value);
     }
-
-    public void Reset()
+    
+    public void ReuseEnemy(LinkedList<Vector3> newPath)
     {
+        //Debug.Log(++resetCount);
         Transform tr = transform;
+        path = newPath;
         tr.position =  path.First.Value;
         tr.rotation = Quaternion.identity;
-        _currentNode = path.First.Next;
-        Debug.Log(_currentNode.Value.ToString());
+        _currentNode = path.First;
+        ChangeDestinationToNextWaypoint();
     }
 
     public bool IsDestinationReachable(Vector3 destination)
