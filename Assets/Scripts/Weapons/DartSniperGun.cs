@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DartSniperGun : MonoBehaviour
 {
-    [SerializeField] private GameObject ammo;
+    [SerializeField] private float bulletFireSpeed;
     // Start is called before the first frame update
     private string _gunFireSoundName;
     void Start()
@@ -29,8 +29,10 @@ public class DartSniperGun : MonoBehaviour
     {
         //Debug.Log("DartSniperGun.Fire");
         Transform tr = transform;
-        GameObject bullet = Instantiate(ammo, tr.position + (tr.localScale.z * tr.forward), Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 50;
+        DartSniperBullet bullet = DartSniperBulletPool.Instance.GetFromPool();
+        bullet.gameObject.SetActive(true);
+        bullet.gameObject.transform.position = tr.position + (tr.localScale.z * tr.forward);
+        bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletFireSpeed;
         //Debug.Log(_gunFireSoundName);
         AudioManager.instance.Play(_gunFireSoundName);
     }

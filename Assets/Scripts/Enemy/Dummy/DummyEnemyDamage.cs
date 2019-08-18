@@ -7,7 +7,7 @@ namespace Enemy.Dummy
     [RequireComponent(typeof(DummyEnemyMovement))]
     public class DummyEnemyDamage : EnemyDamage
     {
-        public delegate void DummyDeath();
+        public delegate void DummyDeath(DummyEnemyDamage dummy);
         public event DummyDeath OnDummyKilled;
         
         protected override void Die()
@@ -15,7 +15,7 @@ namespace Enemy.Dummy
             base.Die();
             if (DummyEnemyPool.Instance != null)
                 DummyEnemyPool.Instance.ReturnToPool(gameObject.GetComponent<DummyEnemyMovement>());
-            OnDummyKilled?.Invoke();
+            OnDummyKilled?.Invoke(this);
         }
     }
 }

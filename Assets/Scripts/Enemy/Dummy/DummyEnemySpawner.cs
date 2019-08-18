@@ -40,13 +40,14 @@ namespace Enemy.Dummy
             DummyEnemyMovement dummy = DummyEnemyPool.Instance.GetFromPool();
             dummy.gameObject.SetActive(true);
             dummy.Path = _path;
-            dummy.gameObject.GetComponent<DummyEnemyDamage>().OnDummyKilled += DecrementDummyCountOnDeath;
+            dummy.gameObject.GetComponent<DummyEnemyDamage>().OnDummyKilled += RemoveDummy;
             dummy.ReuseEnemy(_path);
         }
 
-        private void DecrementDummyCountOnDeath()
+        private void RemoveDummy(DummyEnemyDamage dummy)
         {
             --_dummyCount;
+            dummy.OnDummyKilled -= RemoveDummy;
         }
     }
 }

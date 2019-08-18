@@ -51,7 +51,7 @@ public abstract class EnemyDamage : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);
+            DartSniperBulletPool.Instance.ReturnToPool(other.gameObject.GetComponent<DartSniperBullet>());
             Die();
             //Debug.Log("Hit");
         }
@@ -66,7 +66,7 @@ public abstract class EnemyDamage : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    private void OnDisable()
+    protected void OnDisable()
     {
         OnEnemyKilled -= DarkenColor;
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7316879834444958219}
   - component: {fileID: 7316879834444958218}
   - component: {fileID: 7290171545929058942}
-  - component: {fileID: 4296845165280076385}
+  - component: {fileID: -1943092794224345906}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Bullet
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4296845165280076385
+--- !u!114 &-1943092794224345906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7316879834444958221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d67f0735b0fa9d43b1ce98a3d982d79, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d292933cde94b61a102a63461daa924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 3
+  lifetime: 2
