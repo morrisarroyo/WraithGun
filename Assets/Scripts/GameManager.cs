@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerCharacter playerCharacter;
 
+    [SerializeField] private int killsRequired;
     void Awake()
     {
         if (instance == null)
@@ -30,9 +32,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.activeSceneChanged += ChangeCursorMode;
     }
 
     //practice loading from asset bundle
@@ -56,7 +58,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (IsVictory())
+        {
+            SceneManager.LoadScene("GameEndScene");
+        }
     }
 
     public PlayerCharacter GetPlayerCharacter()
@@ -64,4 +69,22 @@ public class GameManager : MonoBehaviour
         return playerCharacter;
     }
 
+    private bool IsVictory()
+    {
+        return StatsManager.instance.LevelStats.kills >= killsRequired;
+    }
+
+    private void ChangeCursorMode(Scene current, Scene next)
+    {
+        if (next.name == "MainScene")
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
 }

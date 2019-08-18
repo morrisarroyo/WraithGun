@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Enemy.Dummy;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class EnemyDamage : MonoBehaviour
 {
@@ -20,12 +16,6 @@ public abstract class EnemyDamage : MonoBehaviour
     void Start()
     {
         EnemyDamage.OnEnemyKilled += DarkenColor;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void DarkenColor()

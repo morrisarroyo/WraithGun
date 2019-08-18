@@ -10,6 +10,11 @@ public class StatsManager : MonoBehaviour
     [SerializeField]
     private PlayerStats lifetimeStats;
     private PlayerStats _levelStats;
+    public PlayerStats LevelStats
+    {
+        get => _levelStats;
+        private set => _levelStats = value;
+    }
 
     public delegate void UpdatePlayerScore();
     public static event UpdatePlayerScore OnUpdatePlayerScore;

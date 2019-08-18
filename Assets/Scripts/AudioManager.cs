@@ -8,9 +8,15 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public Dictionary<string, AudioSource> sounds;
+    [SerializeField]
+    private Dictionary<string, AudioSource> sounds;
+    public Dictionary<string, AudioSource> Sounds
+    {
+        get => sounds;
+        private set => sounds = value;
+    }
     
-    PlayerCharacter character;
+    PlayerCharacter _character;
     void Awake()
     {
         if (instance == null)
@@ -30,7 +36,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        character = GameManager.instance.GetPlayerCharacter();
+        _character = GameManager.instance.GetPlayerCharacter();
         LoadPlayerCharacterSounds();
         
     }
@@ -45,12 +51,12 @@ public class AudioManager : MonoBehaviour
     {
         //Debug.Log("LoadPlayerCharacterSounds " + character.sounds.GetType().GetProperties().Length);
 
-        var fieldInfos = character.sounds.GetType().GetFields();
+        var fieldInfos = _character.sounds.GetType().GetFields();
         foreach (FieldInfo fInfo in fieldInfos)
         {
             string propertyName = fInfo.Name; //gets the name of the property
             //Debug.Log("LoadPlayerCharacterSounds " + propertyName);
-            Sound sound = (Sound) fInfo.GetValue(character.sounds);
+            Sound sound = (Sound) fInfo.GetValue(_character.sounds);
             //Debug.Log("LoadPlayerCharacterSounds " + fInfo.GetValue(character.sounds));
 
             AddAudioSourceComponent(sound);

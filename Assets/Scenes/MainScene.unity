@@ -4052,6 +4052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 11400000, guid: c0cc7be3d1c9d2e469a15bccb6735550, type: 2}
+  killsRequired: 10
 --- !u!4 &516334308
 Transform:
   m_ObjectHideFlags: 0
