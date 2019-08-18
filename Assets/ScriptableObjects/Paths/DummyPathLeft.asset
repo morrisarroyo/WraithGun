@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0ceafc5a7f0b048b59df62cbcb91a3, type: 3}
-  m_Name: Dummy
+  m_Script: {fileID: 11500000, guid: b78a2b1cb083499c94f902e82b74d534, type: 3}
+  m_Name: DummyPathLeft
   m_EditorClassIdentifier: 
-  killScore: 50
+  waypoints:
+  - {x: 7, y: 0, z: 0}
+  - {x: 8, y: 0, z: 4}
+  - {x: 8, y: 1, z: 14}

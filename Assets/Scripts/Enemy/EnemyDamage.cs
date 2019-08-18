@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.Dummy;
 using UnityEngine;
 
-public class EnemyDamage : MonoBehaviour
+public abstract class EnemyDamage : MonoBehaviour
 {
     //[SerializeField] private int health;
 
@@ -12,7 +13,7 @@ public class EnemyDamage : MonoBehaviour
     [Range(0f,1f)]
     [SerializeField] private float darkenValue;
     public delegate void DarkenEnemyColor();
-    public static event DarkenEnemyColor OnEnemyKilled;
+    public static  event DarkenEnemyColor OnEnemyKilled;
 
 
     // Start is called before the first frame update
@@ -46,17 +47,18 @@ public class EnemyDamage : MonoBehaviour
         {
             Destroy(other.gameObject);
             Die();
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         OnEnemyKilled?.Invoke();
         StatsManager.instance.AddKills(1);
         StatsManager.instance.AddScore(enemyCharacter.KillScore);
-        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
+    
     private void OnDisable()
     {
         OnEnemyKilled -= DarkenColor;

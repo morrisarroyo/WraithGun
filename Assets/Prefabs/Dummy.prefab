@@ -12,14 +12,14 @@ GameObject:
   - component: {fileID: 2978537536721466836}
   - component: {fileID: 2978537536721466837}
   - component: {fileID: 2978537536721466834}
-  - component: {fileID: -3329451303012601419}
-  - component: {fileID: 39261050567133486}
   - component: {fileID: -3425508984033164579}
   - component: {fileID: -8817276810954825786}
+  - component: {fileID: 39261050567133486}
+  - component: {fileID: 2425179812572529623}
   - component: {fileID: 1401933076191664255}
   m_Layer: 0
   m_Name: Dummy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,37 +99,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3329451303012601419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2978537536721466835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3fdf619e3b860b4d98228dcee70610e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCharacter: {fileID: 11400000, guid: 2d18b7259e83f0e428e39f40397e0a34, type: 2}
-  darkenValue: 0.15
---- !u!114 &39261050567133486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2978537536721466835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4be78b6ca665ff499725189cecb19d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!136 &-3425508984033164579
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -160,6 +129,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &39261050567133486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978537536721466835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8f3b8af02ef9642843d9951fc56099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointAreaRadius: 1
+--- !u!114 &2425179812572529623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978537536721466835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e90b197df23486485c3b62868983ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 11400000, guid: 2d18b7259e83f0e428e39f40397e0a34, type: 2}
+  darkenValue: 0.2
 --- !u!195 &1401933076191664255
 NavMeshAgent:
   m_ObjectHideFlags: 0

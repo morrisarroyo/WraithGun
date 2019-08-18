@@ -29,7 +29,7 @@ public class UIPlayerInfo : MonoBehaviour
 
     void UpdatePlayerHealth()
     {
-        Debug.Log("UIPlayerInfo.UpdatePlayerHealth");
+        //Debug.Log("UIPlayerInfo.UpdatePlayerHealth");
         healthText.text = "Health: " + _playerCharacter.health;
     }
 }

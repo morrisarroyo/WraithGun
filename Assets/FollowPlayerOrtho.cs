@@ -22,5 +22,8 @@ public class FollowPlayerOrtho : MonoBehaviour
         Transform tr = transform;
         Vector3 playerPosition = playerTransform.position;
         tr.position = new Vector3(playerPosition.x, tr.position.y, playerPosition.z);
+        Vector3 playerRotation = playerTransform.eulerAngles;
+        Vector3 minimapRotation = new Vector3(0,0, playerPosition.y);
+        tr.LookAt(playerPosition + playerTransform.forward, Vector3.up);
     }
 }
