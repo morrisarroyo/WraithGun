@@ -7,7 +7,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyDamage))]
 public abstract class EnemyNavMeshWaypointMovement : MonoBehaviour
 {
-    
     [SerializeField]
     private float waypointAreaRadius;
     private LinkedList<Vector3> path;
@@ -43,7 +42,7 @@ public abstract class EnemyNavMeshWaypointMovement : MonoBehaviour
 
     private bool HasArrivedAtWaypoint()
     {
-        return Vector3.Distance(transform.position, _currentNode.Value) < waypointAreaRadius;
+        return (!_agent.pathPending && _agent.remainingDistance < waypointAreaRadius);
     }
 
     private void ChangeDestinationToNextWaypoint()

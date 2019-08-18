@@ -16,7 +16,6 @@ namespace Enemy.Dummy
             if (DummyEnemyPool.Instance != null)
                 DummyEnemyPool.Instance.ReturnToPool(gameObject.GetComponent<DummyEnemyMovement>());
             OnDummyKilled?.Invoke();
-            gameObject.SetActive(false);
         }
     }
 }

@@ -39,6 +39,13 @@ public abstract class EnemyDamage : MonoBehaviour
         }
     }
 
+    private void ResetColor()
+    {
+        Material mat = GetComponent<Renderer>().material;
+        Color color = mat.color;
+        color.r = 1f;
+        mat.color = color;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -55,6 +62,7 @@ public abstract class EnemyDamage : MonoBehaviour
         OnEnemyKilled?.Invoke();
         StatsManager.instance.AddKills(1);
         StatsManager.instance.AddScore(enemyCharacter.KillScore);
+        ResetColor();
         gameObject.SetActive(false);
     }
     
